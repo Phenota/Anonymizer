@@ -110,7 +110,7 @@ def convert_to_response(doc: Doc) -> DocResponse:
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to the Hebrew Safe Harbor!"}
+    return {"message": "Welcome to the Hebrew Anonymizer!"}
 
 
 @app.post(path="/query", response_model=DocsResponse)

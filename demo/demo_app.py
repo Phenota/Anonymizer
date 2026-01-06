@@ -3,7 +3,7 @@ import os
 import requests
 import streamlit as st
 
-st.set_page_config(layout="wide", page_title="Hebrew Safe Harbor", initial_sidebar_state="collapsed")
+st.set_page_config(layout="wide", page_title="Hebrew Anonymizer", initial_sidebar_state="collapsed")
 
 from visualizer import visualize_response
 
@@ -11,7 +11,7 @@ DEFAULT_TEXT = "גדעון לבנה הגיע היום לבית החולים שע
 URL = os.getenv("HSH_SERVER", "http://localhost:8000")
 
 def run():
-    st.title("Hebrew Safe Harbor demo application")
+    st.title("Hebrew Anonymizer demo application")
     # TODO check if server is ready + create url
 
     with st.form("analyze text"):

@@ -1,77 +1,24 @@
-# HebSafeHarbor
+# Anonymizer
 
 A de-identification toolkit for clinical text in Hebrew.
 
-[![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT) ![Release](https://img.shields.io/github/v/release/8400TheHealthNetwork/HebSafeHarbor.svg) [![PyPI version](https://badge.fury.io/py/hebsafeharbor.svg)](https://badge.fury.io/py/hebsafeharbor) [![Pypi Downloads](https://img.shields.io/pypi/dm/hebsafeharbor.svg)](https://img.shields.io/pypi/dm/hebsafeharbor.svg) 
-
-HebSafeHarbor was developed according to the requirements described in הצעה למתווה התממה של טקסט רפואי - נמל מבטחים (read more [here](docs/))
+Anonymizer was developed according to the requirements described in הצעה למתווה התממה של טקסט רפואי - נמל מבטחים (read more [here](docs/))
 
 The toolkit integrates and uses open source libraries and assets, including [HebSpacy](https://github.com/8400TheHealthNetwork/HebSpacy) (that runs NER model based on [AlephBERT](https://arxiv.org/pdf/2104.04052.pdf), [Nemo](https://github.com/OnlpLab/NEMO-Corpus) and [BMC](https://www.cs.bgu.ac.il/~elhadad/nlpproj/naama/)), [Presidio](https://microsoft.github.io/presidio/), Wikipedia and public lexicons.
 
 📝 Demo website is available [here](https://hebsafeharbor-demo.azurewebsites.net/)
 
 ## Contents
- - [Installation](#installation) 
- - [Getting started](#getting-started) 
  - [Docker Compose](#docker-compose)
  - [Server](#server)
  - [Demo Application](#demo-application)
  - [FAQ](#faq)
 
 
-## Installation
 
-To install the package, run the following commands - preferably in a virtual environment
-``` sh
-# Create conda env (optional)
-conda create --name hebsafeharbor python=3.8
-conda activate hebsafeharbor
-
-# Install HebSafeHarbor
-pip install hebsafeharbor
-
-# Download the he_ner_news_trf model used by hebsafeharbor
-pip install https://github.com/8400TheHealthNetwork/HebSpacy/releases/download/he_ner_news_trf-3.2.1/he_ner_news_trf-3.2.1-py3-none-any.whl
-```
-
-Alternatively, you may clone the repo and install all dependencies:
-
-``` sh
-# Create conda env (optional)
-conda create --name hebsafeharbor python=3.8
-conda activate hebsafeharbor
-
-# Install dependencies
-pip install -r requirements.txt
-
-# (Optional) Install package locally
-pip install -e .
-
-# Download the he_ner_news_trf model used by hebsafeharbor
-pip install https://github.com/8400TheHealthNetwork/HebSpacy/releases/download/he_ner_news_trf-3.2.1/he_ner_news_trf-3.2.1-py3-none-any.whl
-```
-
-## Getting started
-
-### Python
-
-```python
-from hebsafeharbor import HebSafeHarbor
-
-hsh = HebSafeHarbor()
-
-text = """שרון לוי התאשפזה ב02.02.2012 וגרה בארלוזרוב 16 רמת גן"""
-doc = {"text": text}
-
-output = hsh([doc])
-
-print(output[0].anonymized_text.text)
-
-# > <שם_> התאשפזה ב<יום_>.02.2012 וגרה <מיקום_> 16 רמת גן
-```
 
 ## Docker Compose
-The easiest way to consume HebSafeHarbor as a [service with a REST API](#server)  and [demo application](#demo-application) is through `docker-compose` setup.
+The easiest way to consume this service as a [service with a REST API](#server)  and [demo application](#demo-application) is through `docker-compose` setup.
 
 Run the `docker-compose` command against the `docker-compose.yml` file in the root directory to get the latest containers from Docker Hub
 ```sh
@@ -94,8 +41,8 @@ HebSafeHarbor can be consumed as a REST endpoint for the service powered by the 
 To run the service locally, you will need to first install the environment requirements as follows:  
 ``` sh
 # Create conda env (optional)
-conda create --name hebsafeharbor-server python=3.8
-conda activate hebsafeharbor-server
+conda create --name anonymizer-server python=3.8
+conda activate anonymizer-server
 
 # Install dependencies
 pip install -r requirements.txt
@@ -109,7 +56,7 @@ uvicorn server:app --reload
 ```
 The service should be running at http://127.0.0.1:8000. Navigate to this URL and make sure you see the following message:
 ```
-{"message":"Welcome to the Hebrew Safe Harbor!"}
+{"message":"Welcome to the Hebrew Anonymizer!"}
 ```
 Now go to http://127.0.0.1:8000/docs to see interactive API documentation (Swagger). 
 

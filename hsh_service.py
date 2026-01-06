@@ -27,7 +27,7 @@ class HebSafeHarborService:
 
             self.status = ServiceStatus.READY
             self.hch = hch
-            print("Hebrew Safe Harbor Service is up and ready to serve")
+            print("Hebrew Anonymizer Service is up and ready to serve")
 
         except Exception as e:
             self.status = ServiceStatus.ERROR
@@ -47,7 +47,7 @@ class HebSafeHarborService:
         else:  # self.status == ServiceStatus.ERROR:
             readiness, status_code = "unready", 500
         return {
-                   "service": "Hebrew Safe Harbor",
+                   "service": "Hebrew Anonymizer",
                    "status": readiness
                }, status_code
 
